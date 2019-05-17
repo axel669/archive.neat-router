@@ -1,7 +1,29 @@
 import {useEffect, useMemo, useState, Children} from "react";
 
 const parse = route => {
+    if (route === undefined) {
+        return (path) => ({
+            url: path,
+            params: {},
+            route
+        });
+    }
+
     const parts = route.slice(1).split("/");
+
+    if (parts.length === 0) {
+        return (path, {exact}) => {
+            if (path !== "/" && exact === true) {
+                return null;
+            }
+
+            return {
+                url: path,
+                params: {},
+                route
+            };
+        };
+    }
 
     const checks = parts.map(
         part => {
