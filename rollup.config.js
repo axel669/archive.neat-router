@@ -17,7 +17,7 @@ export default {
             format: "esm"
         },
         {
-            file: "standlone/neat-router.js",
+            file: "standalone/neat-router.js",
             format: "iife",
             name: "Neat",
             globals: {
