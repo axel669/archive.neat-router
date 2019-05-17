@@ -1,0 +1,28 @@
+{
+  "name": "todo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine \"tests/**/*.js\" --random=false --reporter=@axel669/jasmine-basic-reporter || true",
+    "build": "rollup -c"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@axel669/jasmine-basic-reporter": "^1.1.0",
+    "@axel669/rollup-plugin-path-alias": "^1.1.0",
+    "@babel/core": "^7.4.4",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.4.4",
+    "@babel/plugin-proposal-optional-chaining": "^7.2.0",
+    "@babel/plugin-transform-react-jsx": "^7.3.0",
+    "jasmine": "^3.3.1",
+    "rollup": "^1.11.3",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-commonjs": "^9.3.4",
+    "rollup-plugin-node-resolve": "^4.2.3"
+  },
+  "dependencies": {
+    "@axel669/range": "^1.0.0"
+  }
+}

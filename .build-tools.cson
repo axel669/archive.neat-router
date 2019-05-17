@@ -1,0 +1,33 @@
+providers: [
+  {
+    key: "bt"
+    config:
+      commands: [
+        {
+          project: "C:\\Users\\cmorgan\\Documents\\programming\\js\\demos\\todo"
+          source: "C:\\Users\\cmorgan\\Documents\\programming\\js\\demos\\todo\\.build-tools.cson"
+          name: "Build"
+          command: "npm run build"
+          wd: "."
+          env: {}
+          modifier:
+            save_all: {}
+          environment:
+            name: "child_process"
+            config:
+              stdoe: "both"
+          stdout:
+            pipeline: []
+          stderr:
+            pipeline: []
+          output:
+            console:
+              close_success: true
+              queue_in_buffer: true
+              colors: true
+              stdin: false
+          version: 2
+        }
+      ]
+  }
+]
