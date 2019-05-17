@@ -1,6 +1,6 @@
 {
   "name": "@axel669/neat-router",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -22,5 +22,12 @@
     "rollup-plugin-node-resolve": "^4.2.3",
     "rollup-plugin-terser": "^4.0.4"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "files": [
+    "/esm",
+    "/esm/min",
+    "/min",
+    "/standalone",
+    "index.js"
+  ]
 }
