@@ -4,8 +4,8 @@ providers: [
     config:
       commands: [
         {
-          project: "C:\\Users\\cmorgan\\Documents\\programming\\js\\demos\\todo"
-          source: "C:\\Users\\cmorgan\\Documents\\programming\\js\\demos\\todo\\.build-tools.cson"
+          project: "C:\\Users\\cmorgan\\Documents\\git\\neat-router"
+          source: "C:\\Users\\cmorgan\\Documents\\git\\neat-router\\.build-tools.cson"
           name: "Build"
           command: "npm run build"
           wd: "."

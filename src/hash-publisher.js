@@ -8,6 +8,9 @@ const HashPublisher = () => {
         },
         get subscribe() {
             return publisher.subscribe;
+        },
+        get url() {
+            return api.hash;
         }
     };
     api.initialState = api.hash;

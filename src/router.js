@@ -64,7 +64,7 @@ const parse = route => {
             return null;
         }
 
-        return vars;
+        return {url: path, params: vars, route};
     };
 };
 
@@ -72,7 +72,7 @@ const useMounts = effect => useEffect(effect, []);
 const usePathChecker = path => useMemo(() => parse(path), [path]);
 function Router(urlPublisher) {
     function Route(props) {
-        const [currentPath, updatePath] = useState(urlPublisher.initialState);
+        const [currentPath, updatePath] = useState(urlPublisher.url);
         const {path, exact, component: Component, ...rest} = props;
         const pathCheck = usePathChecker(path);
 
@@ -90,7 +90,7 @@ function Router(urlPublisher) {
         return <Component {...rest} neat={pathVars} />
     }
     function Switch(props) {
-        const [currentPath, updatePath] = useState(urlPublisher.initialState);
+        const [currentPath, updatePath] = useState(urlPublisher.url);
         const {children, ...switchLevelProps} = props;
         const routes = Children.toArray(children);
 
@@ -114,8 +114,7 @@ function Router(urlPublisher) {
 
     return {
         Route,
-        Switch,
-        navigate
+        Switch
     };
 };
 

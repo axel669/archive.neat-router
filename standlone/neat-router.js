@@ -1,9 +1,5 @@
-(function (React$1, ReactDOM, doric) {
+var Neat = (function (exports, react) {
   'use strict';
-
-  var React$1__default = 'default' in React$1 ? React$1['default'] : React$1;
-  ReactDOM = ReactDOM && ReactDOM.hasOwnProperty('default') ? ReactDOM['default'] : ReactDOM;
-  doric = doric && doric.hasOwnProperty('default') ? doric['default'] : doric;
 
   function _extends() {
     _extends = Object.assign || function (target) {
@@ -87,17 +83,21 @@
         return null;
       }
 
-      return vars;
+      return {
+        url: path,
+        params: vars,
+        route
+      };
     };
   };
 
-  const useMounts = effect => React$1.useEffect(effect, []);
+  const useMounts = effect => react.useEffect(effect, []);
 
-  const usePathChecker = path => React$1.useMemo(() => parse(path), [path]);
+  const usePathChecker = path => react.useMemo(() => parse(path), [path]);
 
   function Router(urlPublisher) {
     function Route(props) {
-      const [currentPath, updatePath] = React$1.useState(urlPublisher.initialState);
+      const [currentPath, updatePath] = react.useState(urlPublisher.url);
       const {
         path,
         exact,
@@ -117,13 +117,17 @@
       }
 
       return React.createElement(Component, _extends({}, rest, {
-        pathVars: pathVars
+        neat: pathVars
       }));
     }
 
     function Switch(props) {
-      const [currentPath, updatePath] = React$1.useState(urlPublisher.initialState);
-      const routes = React$1.Children.toArray(props.children);
+      const [currentPath, updatePath] = react.useState(urlPublisher.url);
+      const {
+        children,
+        ...switchLevelProps
+      } = props;
+      const routes = react.Children.toArray(children);
       useMounts(() => {
         return urlPublisher.subscribe(updatePath);
       });
@@ -142,8 +146,8 @@
         });
 
         if (pathVars !== null) {
-          return React.createElement(Component, _extends({}, rest, {
-            pathVars: pathVars
+          return React.createElement(Component, _extends({}, switchLevelProps, rest, {
+            neat: pathVars
           }));
         }
       }
@@ -182,6 +186,10 @@
 
       get subscribe() {
         return publisher.subscribe;
+      },
+
+      get url() {
+        return api.hash;
       }
 
     };
@@ -198,45 +206,10 @@
     return api;
   };
 
-  doric.generateCSS(doric.tronTheme);
-  const MainRouter = Router(HashPublisher());
+  exports.HashPublisher = HashPublisher;
+  exports.Publisher = Publisher;
+  exports.Router = Router;
 
-  function Test({
-    pathVars
-  }) {
-    return React$1__default.createElement("div", null, "Test ", pathVars.extra);
-  }
+  return exports;
 
-  function Wat() {
-    return React$1__default.createElement("div", null, "Wat");
-  }
-
-  function Main(props) {
-    return React$1__default.createElement("div", null, React$1__default.createElement(doric.Grid, {
-      cols: 2
-    }, React$1__default.createElement(doric.Button, {
-      text: "Test",
-      primary: true,
-      block: true,
-      onTap: () => document.location.hash = "/test"
-    }), React$1__default.createElement(doric.Button, {
-      text: "Wat",
-      primary: true,
-      block: true,
-      onTap: () => document.location.hash = "/wat"
-    })), React$1__default.createElement(MainRouter.Switch, null, React$1__default.createElement("route", {
-      path: "/test",
-      exact: true,
-      component: Test
-    }), React$1__default.createElement("route", {
-      path: "/wat",
-      component: Wat
-    }), React$1__default.createElement("route", {
-      path: "/test/:extra",
-      component: Test
-    })));
-  }
-
-  ReactDOM.render(React$1__default.createElement(Main, null), document.querySelector("app-root"));
-
-}(React, ReactDOM, doric));
+}({}, React));
