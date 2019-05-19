@@ -29,11 +29,11 @@ const parse = route => {
 
   const parts = route.slice(1).split("/");
 
-  if (parts.length === 0) {
+  if (route === "/") {
     return (path, {
       exact
     }) => {
-      if (path !== "/" && exact === true) {
+      if (path.slice(1) !== "" && exact === true) {
         return null;
       }
 
